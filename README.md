@@ -16,20 +16,24 @@ MinIO is a high performance distributed object storage server, designed for larg
 ?"Refer to [MinIO Deployment on Kubernetes](https://docs.min.io/docs/deploy-minio-on-kubernetes.html) documentation.
 For this demo we will setup Minio using following commands.
 
-`kubectl create -f https://github.com/minio/minio/blob/master/docs/orchestration/kubernetes/minio-standalone-pvc.yaml?raw=true
+----
+kubectl create -f https://github.com/minio/minio/blob/master/docs/orchestration/kubernetes/minio-standalone-pvc.yaml?raw=true
 
 kubectl create -f https://github.com/minio/minio/blob/master/docs/orchestration/kubernetes/minio-standalone-deployment.yaml?raw=true
 
-kubectl create -f https://github.com/minio/minio/blob/master/docs/orchestration/kubernetes/minio-standalone-service.yaml?raw=true`
+kubectl create -f https://github.com/minio/minio/blob/master/docs/orchestration/kubernetes/minio-standalone-service.yaml?raw=true
+----
 
 This should setup necessary resources to run MinIO locally in your Kubernetes cluster.
 The MinIO service is of type LoadBalancer, which means you need to be on public cloud using their native Kubernetes distribution or
 Tanzu PKS.
 Run the following commands to get status of the service.
 
-`kubectl get endpoints
+----
+kubectl get endpoints
 
-kubectl get svc`
+kubectl get svc
+----
 
 You should see a service named *minio-service*.
 You can access the MinIO using http://[external-ip]:9000, credentials (minio/minio123).
@@ -41,24 +45,27 @@ I've a Mac so I just executed `brew install velero`.
 
 Next we will setup Velero server on the Kubernetes cluster you've access to.
 1. Create a `credentials-velero` file add MinIO credentials to it.
-
-`[default]
+----
+[default]
 
 aws_access_key_id = minio
 
-aws_secret_access_key = minio123`
+aws_secret_access_key = minio123
+----
 
 2. Login to MinIO console (`http://[external-ip]:9000`) and create a bucket called *velero*.
 
 3. Run following to start the Velero in your Kubernetes cluster.
 
-`velero install \
+----
+velero install \
 --provider aws \
 --plugins velero/velero-plugin-for-aws:v1.0.0 \
 --bucket velero \
 --secret-file ./credentials-velero \
 --use-volume-snapshots=false \
---backup-location-config region=minio,s3ForcePathStyle="true",s3Url=http://[external-ip]:9000`
+--backup-location-config region=minio,s3ForcePathStyle="true",s3Url=http://[external-ip]:9000
+----
 
 Successful deployment should show following messages
 
@@ -121,14 +128,18 @@ Get details of the restore name
 ## Clean up
 1. If you want to delete any backups you created, including data in object storage and persistent volume snapshots, you can run
 
-`velero backup get
+----
+velero backup get
 
-velero backup delete nginx-backup`
+velero backup delete nginx-backup
+----
 
 2. Verify that backup and restore of `nginx-backup` is removed.
 
-`velero backup get
+----
+velero backup get
 
-velero restore get`
+velero restore get
+----
 
 Also, check in MinIO console that the folders are removed `http://[external-ip]:9000/minio/velero/`.
