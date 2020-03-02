@@ -38,7 +38,7 @@ kubectl get svc
 ~~~~
 
 You should see a service named *minio-service*.
-You can access the MinIO using *http://[external-ip]:9000*, credentials *(minio/minio123)*.
+You can access the MinIO using *http://[minio-external-ip]:9000*, credentials *(minio/minio123)*.
 
 ## Setup Velero
 We will use Velero v1.2.0 for this demo.
@@ -55,7 +55,7 @@ aws_access_key_id = minio
 aws_secret_access_key = minio123
 ~~~~
 
-2. Login to MinIO console *http://[external-ip]:9000* and create a bucket called *velero*.
+2. Login to MinIO console *http://[minio-external-ip]:9000* and create a bucket called *velero*.
 
 3. Run following to start the Velero in your Kubernetes cluster.
 
@@ -66,7 +66,7 @@ velero install \
 --bucket velero \
 --secret-file ./credentials-velero \
 --use-volume-snapshots=false \
---backup-location-config region=minio,s3ForcePathStyle="true",s3Url=http://[external-ip]:9000
+--backup-location-config region=minio,s3ForcePathStyle="true",s3Url=http://[minio-external-ip]:9000
 ~~~~
 
 Successful deployment should show following messages
@@ -90,7 +90,7 @@ This completes Velero setup for the demo.
 
 `velero backup create nginx-backup --selector app=nginx`
 
-4. Check how the backup is created on MinIO using `http://[external-ip]:9000/minio/velero/`
+4. Check how the backup is created on MinIO using `http://[minio-external-ip]:9000/minio/velero/`
 
 5. Check status of the backup
 
@@ -125,7 +125,7 @@ Get details of the restore name
 
 `kubectl get all -n nginx-example`
 
-5. You can also check the restore has created separate folders on MinIO `http://[external-ip]:9000/minio/velero/restores/`
+5. You can also check the restore has created separate folders on MinIO `http://[minio-external-ip]:9000/minio/velero/restores/`
 
 ## Clean up
 1. If you want to delete any backups you created, including data in object storage and persistent volume snapshots, you can run
@@ -142,4 +142,4 @@ velero backup get
 velero restore get
 ~~~~
 
-Also, check in MinIO console that the folders are removed `http://[external-ip]:9000/minio/velero/`.
+Also, check in MinIO console that the folders are removed `http://[minio-external-ip]:9000/minio/velero/`.
