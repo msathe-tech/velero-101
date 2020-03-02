@@ -8,7 +8,8 @@ Features:
 * Backup Hooks - Configure pre and post-backup hooks to perform custom operations before and after Velero backups.
 
 In this workshop we will setup end to end 101 demo of Velero.
-All you need a Kubernetes context in place and `kubectl`.
+
+**You need a Kubernetes context in place and `kubectl`.**
 
 ## Setup MinIO
 For this demo we will use MinIO for backup storage.
