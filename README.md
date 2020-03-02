@@ -13,7 +13,9 @@ All you need a Kubernetes context in place and `kubectl`.
 ## MinIO setup
 For this demo we will use MinIO for backup storage.
 MinIO is a high performance distributed object storage server, designed for large-scale private cloud infrastructure. MinIO is designed in a cloud-native manner to scale sustainably in multi-tenant environments. Orchestration platforms like Kubernetes provide perfect cloud-native environment to deploy and scale MinIO.
-?"Refer to [MinIO Deployment on Kubernetes](https://docs.min.io/docs/deploy-minio-on-kubernetes.html) documentation.
+
+*Refer to [MinIO Deployment on Kubernetes](https://docs.min.io/docs/deploy-minio-on-kubernetes.html) documentation.*
+
 For this demo we will setup Minio using following commands.
 
 ~~~~
