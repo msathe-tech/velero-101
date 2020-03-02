@@ -29,7 +29,6 @@ Run the following commands to get status of the service.
 
 ~~~~
 kubectl get endpoints
-
 kubectl get svc
 ~~~~
 
