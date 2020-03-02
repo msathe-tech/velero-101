@@ -35,11 +35,13 @@ kubectl get svc
 ~~~~
 
 You should see a service named *minio-service*.
-You can access the MinIO using http://[external-ip]:9000, credentials (minio/minio123).
+You can access the MinIO using *http://[external-ip]:9000*, credentials *(minio/minio123)*.
 
 ## Setup Velero
 We will use Velero v1.2.0 for this demo.
+
 You can find Velero installation docs [here](https://velero.io/docs/v1.2.0/basic-install/).
+
 I've a Mac so I just executed `brew install velero`.
 
 Next we will setup Velero server on the Kubernetes cluster you've access to.
@@ -50,7 +52,7 @@ aws_access_key_id = minio
 aws_secret_access_key = minio123
 ~~~~
 
-2. Login to MinIO console (`http://[external-ip]:9000`) and create a bucket called *velero*.
+2. Login to MinIO console *http://[external-ip]:9000* and create a bucket called *velero*.
 
 3. Run following to start the Velero in your Kubernetes cluster.
 
