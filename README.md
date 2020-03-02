@@ -25,9 +25,11 @@ kubectl create -f https://github.com/minio/minio/blob/master/docs/orchestration/
 kubectl create -f https://github.com/minio/minio/blob/master/docs/orchestration/kubernetes/minio-standalone-service.yaml?raw=true
 ~~~~
 
-This should setup necessary resources to run MinIO locally in your Kubernetes cluster.
-The MinIO service is of type LoadBalancer, which means you need to be on public cloud using their native Kubernetes distribution or
-Tanzu PKS.
+This should setup necessary resources to run MinIO in your Kubernetes cluster.
+
+The MinIO service is of type *LoadBalancer*, which means *you need to be on public cloud* using their native Kubernetes distribution *or
+Tanzu PKS*.
+
 Run the following commands to get status of the service.
 
 ~~~~
