@@ -10,7 +10,7 @@ Features:
 In this workshop we will setup end to end 101 demo of Velero.
 All you need a Kubernetes context in place and `kubectl`.
 
-## MinIO setup
+## Setup MinIO
 For this demo we will use MinIO for backup storage.
 MinIO is a high performance distributed object storage server, designed for large-scale private cloud infrastructure. MinIO is designed in a cloud-native manner to scale sustainably in multi-tenant environments. Orchestration platforms like Kubernetes provide perfect cloud-native environment to deploy and scale MinIO.
 
